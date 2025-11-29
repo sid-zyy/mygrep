@@ -43,7 +43,7 @@ int main(int argc, char* argv[]){
         }
     }
 
-    if(argc - optind > 2){//checks if total no. of arguments - no. of options is greater than 2 otherwise throws error 
+    if(argc - optind < 2){//checks if total no. of arguments - no. of options is greater than 2 otherwise throws error 
         //as atleast two other arguments(file and pattern must be present)
         printf("Not enough arguments provided\n");
         exit(1);
