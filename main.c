@@ -15,10 +15,10 @@ int match_ci(const char*line, const char* pattern){
     int n = strlen(line);
     int m = strlen(pattern);
 
-    for(int i = 0; i < n-m; i++){
+    for(int i = 0; i <= n-m; i++){
         int flag = 1;
         for(int j = 0; j < m ; j++){
-            if(tolower(line[j+i]) != pattern[j]){
+            if(tolower(line[j+i]) != tolower(pattern[j])){
                 flag = 0;
                 break;
             }
@@ -35,7 +35,7 @@ int main(int argc, char* argv[]){
     while((opt = getopt(argc,argv,"in"))!= -1){
         //getopt() is used to get all the options used
         //it accepts argc(no. of arguments) argv(string of arguments) and string containing all special characters(i,n in this case)
-        //it returns the string i or n in ASCII, when no more arguments it returns -1
+        //it returns the option character i or n in ASCII, when no more arguments it returns -1
         switch(opt){
             case 'i' : case_insensitive = 1; break;
             case 'n' : line_num = 1; break;//if -i or -n was entered set insensitive and num to 1
@@ -79,5 +79,5 @@ int main(int argc, char* argv[]){
     }
     free(line);//because getline() dynamically reallocates line
     fclose(fp);
-    return found;
+    return found ? 0 : 1;
 }
